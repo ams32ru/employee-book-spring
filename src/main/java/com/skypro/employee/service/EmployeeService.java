@@ -5,11 +5,11 @@ import com.skypro.employee.record.EmployeeRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
     private final Map<Integer, Employee> employees = new HashMap<>();
-
 
     public Collection<Employee> getAllEmployees() {
         return this.employees.values();
@@ -57,16 +57,20 @@ public class EmployeeService {
         return employees.get(idMax);
     }
 
-
     public List getHighSalary() {
-        List <Employee> highEmployee = new ArrayList<>();
+//        List <Employee> highEmployee = new ArrayList<>();
        int average = getSalarySum()/employees.size();
-        for (Employee value : employees.values()) {
-            if (value.getSalary() > average) {
-                highEmployee.add(value);
-            }
-        }
-        return highEmployee;
+//        for (Employee value : employees.values()) {
+//            if (value.getSalary() > average) {
+//                highEmployee.add(value);
+//            }
+//        }
+//        return highEmployee;
+        return employees.values().stream().filter(s -> s.getSalary() > average).collect(Collectors.toList());
+   }
+
+    public Employee removeEmployee(int id) {
+        return employees.remove(id);
     }
 
 }

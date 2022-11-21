@@ -43,6 +43,7 @@ public class EmployeeController {
     public Employee getSalaryMin() {
         return this.employeeService.getSalaryMin();
     }
+
     @GetMapping("/employee/salary/max")
     public Employee getSalaryMax() {
         return this.employeeService.getSalaryMax();
